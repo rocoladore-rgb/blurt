@@ -27,7 +27,7 @@ export function DownloadCTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href="#"
+                href="https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.0/Blurt-v1.0.0.dmg"
                 className="flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-[15px] transition-colors shadow-lg shadow-primary/30"
               >
                 <Download size={17} />
