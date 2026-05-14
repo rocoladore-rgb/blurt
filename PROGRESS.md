@@ -1,6 +1,6 @@
 # Blurt — Build Progress
 
-Last updated: 2026-05-14 (Phase 10 complete)  
+Last updated: 2026-05-14 (v1.0.1 released)  
 Build environment: Xcode 26 / Swift 6.3.2 (SWIFT_VERSION=5.0) / macOS 13+ deployment target
 
 ---
@@ -434,3 +434,21 @@ pbxproj additions: fileRef OnboardingView.swift `000000000000000000000113`, buil
 **Marketing site:** Download buttons in `hero.tsx`, `download-cta.tsx`, and footer `GitHub` link all wired to live URLs. Committed and pushed.
 
 **Remaining manual step:** Connect GitHub repo to Vercel + add custom domain (user handles this).
+
+---
+
+### v1.0.1 Patch Release
+
+**Fixes applied:**
+1. **Settings window** — `openSettings()` now creates and retains a strong `NSWindow` property on AppDelegate hosting `SettingsView`. Calls `makeKeyAndOrderFront` + `NSApp.activate(ignoringOtherApps: true)`. Added `import SwiftUI` to AppDelegate.
+2. **Transcription speed** — Switched default model from `ggml-base.en.bin` to `ggml-tiny.en.bin` (39 MB vs 148 MB). Model pre-warmed on launch via existing `prepare()` call. Processing state shown immediately on Fn release (already wired in v1.0.0).
+3. **Pill size** — Halved: 320×64 → 160×32 pt. Updated `positionAtBottomCenter` centering offset (−160 → −80). Reduced barCount 28→20, maxHeight 40→20. Scaled down error text (13→11 pt) and padding (16→10 pt). Spinner scaleEffect 0.75→0.55.
+4. **Waveform reactivity** — Raw RMS amplified 8× (`min(1.0, amplitude * 8.0)`) before mapping to bar heights. Loud speech now fills bars to near-maximum.
+
+**Build:** `build/Blurt-v1.0.1.dmg` (436 KB)
+
+**GitHub Release:** [v1.0.1](https://github.com/rocoladore-rgb/blurt/releases/tag/v1.0.1)
+
+**Download URL:** `https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.1/Blurt-v1.0.1.dmg`
+
+**Marketing site:** All three download buttons updated to v1.0.1 URL and pushed to GitHub.

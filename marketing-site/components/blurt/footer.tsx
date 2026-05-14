@@ -25,7 +25,7 @@ export function Footer() {
           {/* Links */}
           <div className="grid grid-cols-2 gap-x-12 gap-y-2">
             <a href="#how-it-works" className="text-sm text-muted-text hover:text-white transition-colors">How it works</a>
-            <a href="https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.0/Blurt-v1.0.0.dmg" className="text-sm text-muted-text hover:text-white transition-colors">Download</a>
+            <a href="https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.1/Blurt-v1.0.1.dmg" className="text-sm text-muted-text hover:text-white transition-colors">Download</a>
             <a href="#features"     className="text-sm text-muted-text hover:text-white transition-colors">Features</a>
             <a href="https://github.com/rocoladore-rgb/blurt" className="text-sm text-muted-text hover:text-white transition-colors">GitHub</a>
           </div>

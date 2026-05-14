@@ -38,7 +38,7 @@ export function Hero() {
       {/* CTAs */}
       <div className="mt-10 flex flex-col sm:flex-row items-center gap-3 animate-fade-up" style={{ animationDelay: '240ms', opacity: 0 }}>
         <a
-          href="https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.0/Blurt-v1.0.0.dmg"
+          href="https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.1/Blurt-v1.0.1.dmg"
           className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-[15px] transition-colors shadow-lg shadow-primary/25"
         >
           <Download size={16} />
