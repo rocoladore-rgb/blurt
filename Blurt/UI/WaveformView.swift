@@ -3,14 +3,14 @@ import SwiftUI
 struct WaveformView: View {
     @State private var barHeights: [CGFloat]
 
-    private let barCount   = 28
+    private let barCount   = 20
     private let barWidth:  CGFloat = 2.5
-    private let barGap:    CGFloat = 3.0
-    private let minHeight: CGFloat = 3.0
-    private let maxHeight: CGFloat = 40.0
+    private let barGap:    CGFloat = 2.5
+    private let minHeight: CGFloat = 2.0
+    private let maxHeight: CGFloat = 20.0
 
     init() {
-        _barHeights = State(initialValue: Array(repeating: 3, count: 28))
+        _barHeights = State(initialValue: Array(repeating: 2, count: 20))
     }
 
     var body: some View {
@@ -37,14 +37,16 @@ struct WaveformView: View {
     // MARK: - Bar update
 
     private func updateBars(amplitude: CGFloat) {
+        // Amplify raw RMS (typically 0.01–0.08) so bars react dramatically.
+        let boosted = min(1.0, amplitude * 8.0)
         withAnimation(.spring(response: 0.15, dampingFraction: 0.6)) {
             barHeights = (0..<barCount).map { i in
                 // Gaussian bell curve — edges ~30 % of centre, never zero.
                 let centre = Double(barCount - 1) / 2.0
                 let sigma  = Double(barCount) / 3.0
                 let bell   = exp(-pow(Double(i) - centre, 2) / (2 * sigma * sigma))
-                let jitter = CGFloat.random(in: 0.55...1.45)
-                let h = minHeight + amplitude * (maxHeight - minHeight) * CGFloat(bell) * jitter
+                let jitter = CGFloat.random(in: 0.6...1.4)
+                let h = minHeight + boosted * (maxHeight - minHeight) * CGFloat(bell) * jitter
                 return max(minHeight, min(maxHeight, h))
             }
         }

@@ -1,10 +1,12 @@
 import AppKit
 import AVFoundation
+import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var processingTimer: Timer?
     private var processingFrame = 0
+    private var settingsWindow: NSWindow?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupMenuBar()
@@ -159,7 +161,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func openSettings() {
-        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        if settingsWindow == nil {
+            let controller = NSHostingController(rootView: SettingsView())
+            let window = NSWindow(contentViewController: controller)
+            window.title = "Blurt Settings"
+            window.setContentSize(NSSize(width: 620, height: 500))
+            window.styleMask = NSWindow.StyleMask([.titled, .closable, .miniaturizable, .resizable])
+            window.center()
+            window.isReleasedWhenClosed = false
+            settingsWindow = window
+        }
+        settingsWindow?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 }

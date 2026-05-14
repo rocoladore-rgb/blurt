@@ -69,7 +69,7 @@ private final class PillPanel: NSPanel {
 
     init() {
         super.init(
-            contentRect: NSRect(x: 0, y: 0, width: 320, height: 64),
+            contentRect: NSRect(x: 0, y: 0, width: 160, height: 32),
             styleMask:   [.nonactivatingPanel, .borderless, .fullSizeContentView],
             backing:     .buffered,
             defer:       false
@@ -83,7 +83,7 @@ private final class PillPanel: NSPanel {
         hasShadow             = false
 
         let hosting = NSHostingView(rootView: PillContentView())
-        hosting.frame            = NSRect(x: 0, y: 0, width: 320, height: 64)
+        hosting.frame            = NSRect(x: 0, y: 0, width: 160, height: 32)
         hosting.autoresizingMask = [.width, .height]
         contentView = hosting
     }
@@ -95,7 +95,7 @@ private final class PillPanel: NSPanel {
         guard let screen = NSScreen.main else { return }
         // Use visibleFrame so the pill sits 48 pt above the Dock.
         let vf = screen.visibleFrame
-        let x  = vf.midX - 160   // half of 320 pt width
+        let x  = vf.midX - 80    // half of 160 pt width
         let y  = vf.minY + 48
         setFrameOrigin(NSPoint(x: x, y: y))
     }
@@ -116,7 +116,7 @@ private struct PillContentView: View {
 
             pillContent
         }
-        .frame(width: 320, height: 64)
+        .frame(width: 160, height: 32)
         .scaleEffect(scale)
         .opacity(opacity)
         .onReceive(controller.$isShowing) { showing in
@@ -137,26 +137,27 @@ private struct PillContentView: View {
         switch controller.pillState {
         case .recording:
             WaveformView()
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 10)
                 .transition(.opacity)
 
         case .processing:
             ProgressView()
                 .progressViewStyle(.circular)
                 .tint(.white)
-                .scaleEffect(0.75)
+                .scaleEffect(0.55)
                 .transition(.opacity)
 
         case .error(let message):
-            HStack(spacing: 8) {
+            HStack(spacing: 5) {
                 Image(systemName: "exclamationmark.circle.fill")
+                    .font(.system(size: 11))
                     .foregroundStyle(.orange)
                 Text(message)
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.white)
                     .lineLimit(1)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 10)
             .transition(.opacity)
         }
     }

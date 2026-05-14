@@ -21,10 +21,10 @@ final class Transcriber: ObservableObject {
         return support.appendingPathComponent("Blurt", isDirectory: true)
     }()
 
-    static let modelURL: URL = modelDirectory.appendingPathComponent("ggml-base.en.bin")
+    static let modelURL: URL = modelDirectory.appendingPathComponent("ggml-tiny.en.bin")
 
     private static let downloadURL = URL(
-        string: "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin"
+        string: "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.en.bin"
     )!
 
     private init() {}
@@ -61,7 +61,7 @@ final class Transcriber: ObservableObject {
 
     private func downloadModel() {
         DispatchQueue.main.async { self.state = .downloading(progress: 0) }
-        print("Blurt: whisper base.en model not found — downloading (~148 MB)…")
+        print("Blurt: whisper tiny.en model not found — downloading (~39 MB)…")
 
         do {
             try FileManager.default.createDirectory(
