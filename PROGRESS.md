@@ -1,6 +1,6 @@
 # Blurt — Build Progress
 
-Last updated: 2026-05-14  
+Last updated: 2026-05-14 (Phase 10 complete)  
 Build environment: Xcode 26 / Swift 6.3.2 (SWIFT_VERSION=5.0) / macOS 13+ deployment target
 
 ---
@@ -18,7 +18,7 @@ Build environment: Xcode 26 / Swift 6.3.2 (SWIFT_VERSION=5.0) / macOS 13+ deploy
 | 7 | Floating Pill UI + Waveform | ✅ Complete |
 | 8 | Settings Window | ✅ Complete |
 | 9 | Polish | ✅ Complete |
-| 10 | Distribution | ⬜ Not started |
+| 10 | Distribution | ✅ Complete |
 
 ---
 
@@ -417,6 +417,20 @@ Design system: `tailwind.config.js` maps all CLAUDE.md brand tokens (background/
 
 pbxproj additions: fileRef OnboardingView.swift `000000000000000000000113`, buildFile `000000000000000000000114`. Next available UUID: `000000000000000000000115`.
 
-### Phase 10 — Distribution
+### Phase 10 — Distribution ✅
 
-Developer ID signing, notarisation, DMG packaging, marketing site download link.
+**Release build:** `xcodebuild -configuration Release` → `build/Release/Blurt.app` (unsigned, macOS 13+)
+
+**DMG:** `build/Blurt-v1.0.0.dmg` — created with `hdiutil`, compressed UDZO, app + Applications symlink layout, 698KB
+
+**Git repository:** Initialized at project root. Nested `.git` in `Blurt/` source dir removed and re-flattened. `.gitignore` excludes `build/`, `DerivedData/`, `*.bin` (whisper models), `node_modules/`, `.next/`.
+
+**GitHub:** [github.com/rocoladore-rgb/blurt](https://github.com/rocoladore-rgb/blurt) — initial commit "Blurt v1.0.0 — initial release" (69 files)
+
+**GitHub Release:** Tagged `v1.0.0` — [github.com/rocoladore-rgb/blurt/releases/tag/v1.0.0](https://github.com/rocoladore-rgb/blurt/releases/tag/v1.0.0)
+
+**DMG download URL:** `https://github.com/rocoladore-rgb/blurt/releases/download/v1.0.0/Blurt-v1.0.0.dmg`
+
+**Marketing site:** Download buttons in `hero.tsx`, `download-cta.tsx`, and footer `GitHub` link all wired to live URLs. Committed and pushed.
+
+**Remaining manual step:** Connect GitHub repo to Vercel + add custom domain (user handles this).
