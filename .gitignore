@@ -1,0 +1,34 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+.swiftpm/
+
+# Whisper models (large binary files — downloaded on first launch)
+*.bin
+*.gguf
+
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node / marketing site
+marketing-site/node_modules/
+marketing-site/.next/
+marketing-site/out/
+marketing-site/.vercel/
+
+# Build artifacts
+*.o
+*.d
+*.swp
+
+# Secrets / env
+.env
+.env.local
+.env*.local
